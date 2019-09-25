@@ -1,13 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  min-width: 230px;
+  overflow-x: hidden;
+  background-color: #fff;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+header{
+  text-align: center;
+}
+.form_cont{
+  max-width: 400px;
+  display: block;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 12px 3px rgb(97, 97, 97)
+}
+.form_cont .btn{
+  margin: 0 auto;
+  display: block;
+}
+.info-user{
+  font-weight: bold;
+  border-bottom: 2px solid #000000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 7px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.info-user img{
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+.card{
+  margin-bottom: 25px;
+  box-shadow: 0 0 12px 3px rgb(97, 97, 97)
+}
+.card> img{
+  margin-top: 15px;
+}
+.card-text{
+  max-height: 70px;
+  height: 70px;
+  overflow: hidden;
 }
