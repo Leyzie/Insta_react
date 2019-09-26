@@ -9,11 +9,13 @@ export default class Photo extends React.Component {
     state = {
         ItemsPhoto: null,
         showMore: 5,
+        BtnShow: true
     }
     handleClick(lengAR) {
         if(lengAR <= this.state.showMore){
             this.setState({showMore: lengAR})
             // добавит класс
+            this.setState({BtnShow: false})
         }else{
             this.setState({showMore: this.state.showMore + 5})
         }
@@ -21,9 +23,8 @@ export default class Photo extends React.Component {
     }
     render() {
         const iremsprops = this.props
-        console.log(iremsprops.ItemsPhoto)
-        console.log(this.state.showMore)
-        
+        // console.log(iremsprops.ItemsPhoto)
+        // console.log(this.state.showMore)
         const newsTemplate = iremsprops.ItemsPhoto.slice(0, this.state.showMore).map((Items, index) =>{
             let DateN = parseInt(Items.created_time)*1000
             let DateTime = new Date(DateN)
@@ -35,7 +36,7 @@ export default class Photo extends React.Component {
                 var yy = date.getFullYear() % 100;
                 if (yy < 10) yy = '0' + yy;
                 return dd + '.' + mm + '.' + yy;
-              }
+            }
 
             let TemplateTags
             
@@ -71,9 +72,10 @@ export default class Photo extends React.Component {
         return (
             <>
                 {newsTemplate? newsTemplate : `Ошибка!`}
-                <div>
-                    <button onClick={()=> this.handleClick(iremsprops.ItemsPhoto.length)}>Show more</button>
-                </div>
+                {this.state.BtnShow? <div className="col-12 rowBtn">
+                    <button className="btn btn-info" onClick={()=> this.handleClick(iremsprops.ItemsPhoto.length)}>Show more</button>
+                </div> : ``}
+                
             </>
         )
     }

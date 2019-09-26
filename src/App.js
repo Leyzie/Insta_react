@@ -1,6 +1,7 @@
 import React from 'react';
 // import FormInfo from './components/FormInfo';
 import Photo from './components/Photo';
+import User from './components/User';
 
 // { this.state.images.map((image) => {
 //   return <img src={image.images.thumbnail.url} />
@@ -8,7 +9,11 @@ import Photo from './components/Photo';
 class App extends React.Component{
   state = {
     images: [],
-    Imagesss: []
+    Imagesss: [],
+    UserName: '',
+    UserImage: '',
+    CountPhoto: '',
+    UserLink: '',
   };
   getInsta = async (e) => {
     e.preventDefault()
@@ -35,24 +40,39 @@ class App extends React.Component{
     if (responses.ok) { // если HTTP-статус в диапазоне 200-299
         // получаем тело ответа (см. про этот метод ниже)
         let jsonZ = await responses.json();
-          console.log(jsonZ)
+          // console.log(jsonZ)
           this.setState({ Imagesss: jsonZ.data })
+          this.setState({ CountPhoto: jsonZ.data.length })
+
+          this.setState({ UserName: this.state.Imagesss[0].user.username })
+          this.setState({ UserImage: this.state.Imagesss[0].user.profile_picture })
+         
+        
+         
     } else {
         console.log("Ошибка HTTP: " + responses.status);
     }
   }
-
+   
+    
 
   render(){
+    
     return (
       <div className="App">
         <header className="App-header">
           <h1>Insta</h1>
+          <User
+            name={this.state.UserName}
+            image={this.state.UserImage}
+            count={this.state.CountPhoto}
+          />
         </header>
         {/* <FormInfo  MethodInfo={this.getInsta}/> */}
         
         <div className="container">
           <div className="row justify-content-center">
+            
             <Photo
                 ItemsPhoto={this.state.Imagesss}
             />
